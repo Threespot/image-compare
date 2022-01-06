@@ -179,6 +179,12 @@ class ImageCompare extends HTMLElement {
 
           this.animationFrame = requestAnimationFrame(() => {
             this.shadowRoot.host.style.setProperty('--exposure', `${target.value}%`);
+
+            // Add custom event so we can get the current state of the element.
+            // We can use this hook to trigger functions based on the range slider’s value (0–100)
+            document.documentElement.dispatchEvent(
+              new CustomEvent('imageExposure', { detail: target })
+            );
           });
         });
     });
