@@ -1,4 +1,4 @@
-const template = document.createElement("template");
+const template = document.createElement('template');
 
 // Styling range input thumbs requires you to separately define the CSS rules
 // for different browsers. We store them once here for ease of maintenance.
@@ -55,9 +55,9 @@ template.innerHTML = /*html*/`
 
     ::slotted([slot='image-2']) {
       clip-path: polygon(
-        calc(var(--exposure) + var(--divider-width)/2) 0, 
-        100% 0, 
-        100% 100%, 
+        calc(var(--exposure) + var(--divider-width)/2) 0,
+        100% 0,
+        100% 100%,
         calc(var(--exposure) + var(--divider-width)/2) 100%);
     }
 
@@ -74,11 +74,11 @@ template.innerHTML = /*html*/`
     }
 
     .visually-hidden {
-      border: 0; 
-      clip: rect(0 0 0 0); 
+      border: 0;
+      clip: rect(0 0 0 0);
       clip-path: polygon(0px 0px, 0px 0px, 0px 0px);
       -webkit-clip-path: polygon(0px 0px, 0px 0px, 0px 0px);
-      height: 1px; 
+      height: 1px;
       margin: -1px;
       overflow: hidden;
       padding: 0;
@@ -127,10 +127,10 @@ template.innerHTML = /*html*/`
 
   <slot name="image-1"></slot>
   <slot name="image-2"></slot>
-  
+
   <label>
     <span class="visually-hidden js-label-text">
-      Control how much of each overlapping image is shown. 
+      Control how much of each overlapping image is shown.
       0 means the first image is completely hidden and the second image is fully visible.
       100 means the first image is fully visible and the second image is completely hidden.
       50 means both images are half-shown, half-hidden.
@@ -141,19 +141,19 @@ template.innerHTML = /*html*/`
 
 /**
  * Our ImageCompare web component class
- * 
+ *
  * @attr {string} label-text - Provide additional context to screen reader users.
- * 
+ *
  * @slot image-1 - Your first image. Will appear on the "left"
  * @slot image-2 - Your second image. Will appear on the "right"
- * 
- * @cssprop --thumb-background-color - The background color of the range slider handle. 
+ *
+ * @cssprop --thumb-background-color - The background color of the range slider handle.
  * @cssprop --thumb-background-image - The background image of the range slider handle.
  * @cssprop --thumb-size - The size of the range slider handle.
  * @cssprop --thumb-radius - The border-radius of the range slider handle.
  * @cssprop --thumb-border-color - The color of the range slider handle border.
  * @cssprop --thumb-border-size - The width of the range slider handle border.
- * 
+ *
  * @ccprop --focus-width - The width of the range slider handle's focus outline.
  * @ccprop --focus-color - The color of the range slider handle's focus outline.
  *
@@ -163,32 +163,31 @@ template.innerHTML = /*html*/`
 class ImageCompare extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: "open" });
+    this.attachShadow({ mode: 'open' });
   }
 
   animationFrame;
 
   connectedCallback() {
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-    
+
     ['input', 'change'].forEach((eventName) => {
-      this.shadowRoot.querySelector("input").addEventListener(
-        eventName,
-        ({ target }) => {
+      this.shadowRoot
+        .querySelector('input')
+        .addEventListener(eventName, ({ target }) => {
           if (this.animationFrame) cancelAnimationFrame(this.animationFrame);
 
           this.animationFrame = requestAnimationFrame(() => {
-            this.shadowRoot.host.style.setProperty('--exposure', `${target.value}%`)
+            this.shadowRoot.host.style.setProperty('--exposure', `${target.value}%`);
           });
-        },
-      );
+        });
     });
 
     const customLabel = this.shadowRoot.host.getAttribute('label-text');
-    if(customLabel) {
-      this.shadowRoot.querySelector(".js-label-text").textContent = customLabel;
+    if (customLabel) {
+      this.shadowRoot.querySelector('.js-label-text').textContent = customLabel;
     }
   }
 }
 
-customElements.define("image-compare", ImageCompare);
+customElements.define('image-compare', ImageCompare);
