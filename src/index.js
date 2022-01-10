@@ -5,14 +5,14 @@ const template = document.createElement('template');
 const thumbStyles = `
   background-color: var(--thumb-background-color);
   background-image: var(--thumb-background-image);
-  background-size: var(--thumb-background-size);
   background-position: center center;
   background-repeat: no-repeat;
+  background-size: var(--thumb-background-size);
   border-radius: var(--thumb-radius);
   border: var(--thumb-border-size) var(--thumb-border-color) solid;
   color: var(--thumb-border-color);
-  width: var(--thumb-size);
   height: var(--thumb-size);
+  width: var(--thumb-size);
 `;
 
 const thumbFocusStyles = `
@@ -31,16 +31,16 @@ template.innerHTML = /*html*/`
       --thumb-background-color: hsla(0, 0%, 100%, 0.9);
       --thumb-background-image: url('data:image/svg+xml;utf8,<svg viewbox="0 0 60 60"  width="60" height="60" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="${thumbSvgWidth}" d="M20 20 L10 30 L20 40"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="${thumbSvgWidth}" d="M40 20 L50 30 L40 40"/></svg>');
       --thumb-background-size: 90% auto;
-      --thumb-size: clamp(3em, 10vmin, 5em);
-      --thumb-radius: 50%;
       --thumb-border-color: hsla(0, 0%, 0%, 0.9);
       --thumb-border-size: 2px;
+      --thumb-radius: 50%;
+      --thumb-size: clamp(3em, 10vmin, 5em);
 
-      --focus-width: var(--thumb-border-size);
       --focus-color: hsl(200, 100%, 80%);
+      --focus-width: var(--thumb-border-size);
 
-      --divider-width: 2px;
       --divider-color: hsla(0, 0%, 0%, 0.9);
+      --divider-width: 2px;
 
       display: flex;
       flex-direction: column;
@@ -69,9 +69,9 @@ template.innerHTML = /*html*/`
     }
 
     slot[name='image-2'] {
+      filter: drop-shadow(calc(var(--divider-width) * -1) 0 0 var(--divider-color));
       position: absolute;
       top:0;
-      filter: drop-shadow(calc(var(--divider-width) * -1) 0 0 var(--divider-color));
     }
 
     .visually-hidden {
@@ -84,28 +84,28 @@ template.innerHTML = /*html*/`
       overflow: hidden;
       padding: 0;
       position: absolute;
-      width: 1px;
       white-space: nowrap;
+      width: 1px;
     }
 
     label {
       align-items: stretch;
-      display: flex;
-      position: absolute;
-      top: 0;
-      left: 0;
       bottom: 0;
+      display: flex;
+      left: 0;
+      position: absolute;
       right: 0;
+      top: 0;
     }
 
     input {
-      cursor: col-resize;
-      margin: 0 calc(var(--thumb-size) / -2);
-      width: calc(100% + var(--thumb-size));
       appearance: none;
       -webkit-appearance: none;
       background: none;
       border: none;
+      cursor: col-resize;
+      margin: 0 calc(var(--thumb-size) / -2);
+      width: calc(100% + var(--thumb-size));
     }
 
     ::-moz-range-thumb {
