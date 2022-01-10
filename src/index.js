@@ -171,6 +171,8 @@ class ImageCompare extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
+    // Note: Listen to both “input” and “change” events to fix issue with iOS VoiceOver in Safari
+    // https://github.com/cloudfour/image-compare/pull/2
     ['input', 'change'].forEach((eventName) => {
       this.shadowRoot
         .querySelector('input')
