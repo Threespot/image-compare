@@ -5,7 +5,7 @@ const template = document.createElement('template');
 const thumbStyles = `
   background-color: var(--thumb-background-color);
   background-image: var(--thumb-background-image);
-  background-size: 90%;
+  background-size: var(--thumb-background-size);
   background-position: center center;
   background-repeat: no-repeat;
   border-radius: var(--thumb-radius);
@@ -30,6 +30,7 @@ template.innerHTML = /*html*/`
 
       --thumb-background-color: hsla(0, 0%, 100%, 0.9);
       --thumb-background-image: url('data:image/svg+xml;utf8,<svg viewbox="0 0 60 60"  width="60" height="60" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="${thumbSvgWidth}" d="M20 20 L10 30 L20 40"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="${thumbSvgWidth}" d="M40 20 L50 30 L40 40"/></svg>');
+      --thumb-background-size: 90% auto;
       --thumb-size: clamp(3em, 10vmin, 5em);
       --thumb-radius: 50%;
       --thumb-border-color: hsla(0, 0%, 0%, 0.9);
