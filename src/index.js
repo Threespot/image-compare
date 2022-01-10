@@ -11,6 +11,7 @@ const thumbStyles = `
   border-radius: var(--thumb-radius);
   border: var(--thumb-border-size) var(--thumb-border-color) solid;
   color: var(--thumb-border-color);
+  filter: var(--thumb-filter);
   height: var(--thumb-size);
   width: var(--thumb-size);
 `;
@@ -33,6 +34,7 @@ template.innerHTML = /*html*/`
       --thumb-background-size: 90% auto;
       --thumb-border-color: hsla(0, 0%, 0%, 0.9);
       --thumb-border-size: 2px;
+      --thumb-filter: none;
       --thumb-radius: 50%;
       --thumb-size: clamp(3em, 10vmin, 5em);
 
