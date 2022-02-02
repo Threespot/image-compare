@@ -169,8 +169,6 @@ class ImageCompare extends HTMLElement {
     this.attachShadow({ mode: 'open' });
   }
 
-  animationFrame;
-
   connectedCallback() {
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
